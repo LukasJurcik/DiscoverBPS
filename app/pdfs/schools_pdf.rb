@@ -31,7 +31,7 @@ class SchoolsPdf < Prawn::Document
   end
 
   def school_rows
-    [["", "Eligibility", "Transportation", "Distance", "2011 Hours"]] +
+    [["", "Eligibility", "Transportation", "Distance", "#{Date.today.year} Hours"]] +
     @schools.map do |school|
       [school.name, school.eligibility, transportation_eligibility(school), distance_in_miles_from_meters(school.distance), school.grade(@session[:grade_level]).try(:hours)]
     end
