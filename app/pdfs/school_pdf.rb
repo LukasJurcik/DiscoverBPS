@@ -100,7 +100,7 @@ class SchoolPdf < Prawn::Document
     if @grade.open_seats.present?
       move_down 25
       text "Admissions (Grade #{@session[:grade_level]})", :size => 14, :style => :bold
-      table [["Open Seats", "1st Choices", "2nd Choices", "3rd Choices", "Applicants per Open Seat"]] + [[@grade.open_seats, @grade.first_choice, @grade.second_choice, @grade.third_choice, "#{@grade.demand.to_i} : 1"]] do
+      table [["Open Seats", "1st Choices", "2nd Choices", "3rd Choices", "Applicants per Open Seat"]] + [[@grade.open_seats, @grade.first_choice, @grade.second_choice, @grade.third_choice, "#{@grade.try(:demand).try(:to_i)} : 1"]] do
         row(0).font_style = :italic
       end
     end
