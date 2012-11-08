@@ -15,7 +15,7 @@ class School < ActiveRecord::Base
   
   attr_accessor :eligibility, :eligibility_index
   # before_save :recalculate_school_assignment so if they change a school location or add a school it will be reindexed TODO
-  before_save :geocode_address
+  before_create :geocode_address
   before_save :create_permalink
   
   validates_uniqueness_of :name
