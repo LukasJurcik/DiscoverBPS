@@ -7,9 +7,9 @@ class GradeLevelSchool < ActiveRecord::Base
     if first_choice.present?
       total = 0
       total += first_choice
-      total += second_choice
-      total += third_choice
-      total += fourth_higher_choice
+      total += second_choice if second_choice.present?
+      total += third_choice if third_choice.present?
+      total += fourth_higher_choice if fourth_higher_choice.present?
       total
     end
   end
