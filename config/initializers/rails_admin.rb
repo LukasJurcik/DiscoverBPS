@@ -134,25 +134,24 @@ RailsAdmin.config do |config|
 #  - has_many/has_one associations in list section (hidden by default for performance reasons)
 # Fields may also be marked as read_only (and thus not editable) if they are not mass-assignable by current_user
 
-  # config.model AddressRange do
-  #   # Found associations: 
-  #   field :geocode, :belongs_to_association
-  #   # Found columns:
-  #   field :id, :integer
-  #   field :geocode_id, :integer        # Hidden
-  #   field :num_start, :integer
-  #   field :num_end, :integer
-  #   field :is_even, :boolean
-  #   field :street, :string
-  #   field :zipcode, :string
-  #   # Sections: 
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  #  end
+  config.model AddressRange do
+    # Found columns:
+    field :id, :integer
+    field :street, :string
+    field :num_start, :integer
+    field :num_end, :integer
+    field :zipcode, :string
+    field :geocode, :belongs_to_association
+    # Sections: 
+    list do
+      sort_by :street
+    end
+    export do; end
+    show do; end
+    edit do; end
+    create do; end
+    update do; end
+  end
 
 # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible.
 # There can be different reasons for that:
@@ -164,23 +163,21 @@ RailsAdmin.config do |config|
 #  - has_many/has_one associations in list section (hidden by default for performance reasons)
 # Fields may also be marked as read_only (and thus not editable) if they are not mass-assignable by current_user
 
-  # config.model AssignmentZone do
-  #   # Found associations: 
-  #   field :schools, :has_many_association
-  #   # Found columns:
-  #   field :id, :integer
-  #   field :name, :string
-  #   field :created_at, :datetime
-  #   field :updated_at, :datetime
-  #   field :geometry, :text
-  #   # Sections: 
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  #  end
+  config.model AssignmentZone do
+    # Found columns:
+    field :id, :integer
+    field :name, :string
+    field :geometry, :text
+    # Found associations: 
+    field :schools, :has_many_association
+    # Sections: 
+    list do; end
+    export do; end
+    show do; end
+    edit do; end
+    create do; end
+    update do; end
+   end
 
 # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible.
 # There can be different reasons for that:
@@ -192,25 +189,24 @@ RailsAdmin.config do |config|
 #  - has_many/has_one associations in list section (hidden by default for performance reasons)
 # Fields may also be marked as read_only (and thus not editable) if they are not mass-assignable by current_user
 
-  # config.model City do
-  #   # Found associations: 
-  #   field :state, :belongs_to_association
-  #   field :schools, :has_many_association
-  #   field :neighborhoods, :has_many_association
-  #   # Found columns:
-  #   field :id, :integer
-  #   field :name, :string
-  #   field :state_id, :integer        # Hidden
-  #   field :created_at, :datetime
-  #   field :updated_at, :datetime
-  #   # Sections: 
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  #  end
+  config.model City do
+    # Found columns:
+    field :id, :integer
+    field :name, :string
+    # Found associations: 
+    field :state, :belongs_to_association
+    field :schools, :has_many_association
+    field :neighborhoods, :has_many_association
+    # Sections: 
+    list do
+     sort_by :name 
+    end
+    export do; end
+    show do; end
+    edit do; end
+    create do; end
+    update do; end
+   end
 
 # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible.
 # There can be different reasons for that:
@@ -368,24 +364,23 @@ RailsAdmin.config do |config|
 #  - has_many/has_one associations in list section (hidden by default for performance reasons)
 # Fields may also be marked as read_only (and thus not editable) if they are not mass-assignable by current_user
 
-  # config.model Neighborhood do
-  #   # Found associations: 
-  #   field :city, :belongs_to_association
-  #   field :schools, :has_many_association
-  #   # Found columns:
-  #   field :id, :integer
-  #   field :city_id, :integer        # Hidden
-  #   field :name, :string
-  #   field :created_at, :datetime
-  #   field :updated_at, :datetime
-  #   # Sections: 
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  #  end
+  config.model Neighborhood do
+    # Found columns:
+    field :id, :integer
+    field :name, :string
+    # Found associations: 
+    field :city, :belongs_to_association
+    field :schools, :has_many_association
+    # Sections: 
+    list do
+      sort_by :name
+    end
+    export do; end
+    show do; end
+    edit do; end
+    create do; end
+    update do; end
+   end
 
 # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible.
 # There can be different reasons for that:
@@ -403,17 +398,18 @@ RailsAdmin.config do |config|
     end
     # Found columns:
     field :id, :integer
-    field :address, :string
-    field :geometry, :text
     field :build_name, :string
-    field :city_id, :integer
+    field :address, :string
     field :zipcode, :string
+    field :geometry, :text
     # Found associations: 
     field :schools, :has_many_association
     # field :created_at, :datetime
     # field :updated_at, :datetime
     # Sections: 
-    list do; end
+    list do
+      sort_by :build_name
+    end
     export do; end
     show do; end
     edit do; end
@@ -471,7 +467,7 @@ RailsAdmin.config do |config|
     field :name, :string
     field :bpsid, :integer
     field :org_code, :integer
-    field :permalink, :string
+    field :permalink, :string #Hidden
     field :hidden_gem, :boolean
     field :special_admissions, :boolean
     field :description, :text
@@ -505,7 +501,9 @@ RailsAdmin.config do |config|
     # field :updated_at, :datetime
 
     # Sections: 
-    list do; end
+    list do
+      sort_by :name
+    end
     export do; end
     show do; end
     edit do; end
