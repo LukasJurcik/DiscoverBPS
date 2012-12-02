@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130204721) do
+ActiveRecord::Schema.define(:version => 20121202030424) do
 
   create_table "address_ranges", :force => true do |t|
     t.integer "geocode_id"
@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(:version => 20111130204721) do
     t.string   "zipcode"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "principals", :force => true do |t|
