@@ -44,6 +44,7 @@ class School < ActiveRecord::Base
         .select("geocode_grade_walkzone_schools.transportation_eligible as transportation_eligible")
         .select("schools.*")
         .with_distance(geocoded_address)
+        .with_backup_distance(geocoded_address)
         .includes(:grade_level_schools, :city)
         .order('distance ASC')
       [[schools,"Walk Zone",1]].each do |schools,type,index|
@@ -56,11 +57,11 @@ class School < ActiveRecord::Base
     end
   
     def with_distance(address)
-      if self.parcel.try(:geometry).present?
-        self.joins(:parcel).select("ST_Distance(parcels.geometry, ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
-      else
-        self.joins(:parcel).select("ST_Distance(ST_GeomFromText('POINT(#{parcels.lng} #{parcels.lat})'), ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
-      end
+      self.joins(:parcel).select("ST_Distance(parcels.geometry, ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
+    end
+    
+    def with_backup_distance(address)
+      self.joins(:parcel).select("ST_Distance(ST_GeomFromText('POINT(#{parcels.lng} #{parcels.lat})'), ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
     end
   
     def find_all_within_radius(address, radius_in_meters)

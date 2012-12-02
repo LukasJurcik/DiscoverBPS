@@ -23,7 +23,12 @@
       - else
         = image_tag('school-bus.png')
   %td.tabbable.overview.large
-    =raw school.distance.present? ? "#{distance_in_miles_from_meters(school.distance)}&nbsp;<span class='small'>mi</span>" : '&nbsp;'
+    - if school.distance.present?
+      =raw "#{distance_in_miles_from_meters(school.distance)}&nbsp;<span class='small'>mi</span>"
+    - elsif school.backup_distance.present?
+      =raw "#{distance_in_miles_from_meters(school.backup_distance)}&nbsp;<span class='small'>mi</span>"
+    - else
+      &nbsp;
   %td.tabbable.overview
     =raw school.grade(session[:grade_level]).try(:hours).present? ? school.grade(session[:grade_level]).try(:hours) : '&nbsp;'
   
