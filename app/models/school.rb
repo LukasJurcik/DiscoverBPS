@@ -56,7 +56,11 @@ class School < ActiveRecord::Base
     end
   
     def with_distance(address)
-      self.joins(:parcel).select("ST_Distance(parcels.geometry, ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
+      if self.parcel.try(:geometry).present?
+        self.joins(:parcel).select("ST_Distance(parcels.geometry, ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
+      else
+        self.joins(:parcel).select("ST_Distance(ST_GeomFromText('POINT(#{parcels.lng} #{parcels.lat})'), ST_GeomFromText('POINT(#{address.lng} #{address.lat})')) as distance")
+      end
     end
   
     def find_all_within_radius(address, radius_in_meters)
