@@ -24,11 +24,11 @@
               =raw flash[:alert]
           .label.darkgray
             Address:
-          = text_field_tag :address, '', :placeholder => '26 Court St', :class => 'address'
+          = text_field_tag :address, '', :class => 'address'
           %br/
           .label.darkgray
             Zipcode:
-          = text_field_tag :zipcode, '', :placeholder => '02126', :class => 'zipcode'
+          = text_field_tag :zipcode, '', :class => 'zipcode'
           %br/
           .label.darkgray
             Grade:
@@ -39,6 +39,10 @@
           = select_tag :sibling_school, options_from_collection_for_select(School.all(:order => 'name'), :id, :name, :selected => session[:sibling_school]), :include_blank => true, :class => 'search'
           .search_button
             = submit_tag "Search"
+        
+        %br/
+        Example: 
+        = link_to '26 Court Street, Grade 7', '/schools?address=26+Court+St&zipcode=02126&grade_level=7'
         
     %td.valign-top
       - featured_schools = School.all.find_all {|x| x.hidden_gem? }
