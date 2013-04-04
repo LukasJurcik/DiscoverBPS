@@ -106,6 +106,6 @@ request with failing specs.
 
 ## <a name="copyright">Copyright</a>
 Copyright (c) 2011 Code for America.
-See [LICENSE](https://github.com/codeforamerica/schoolselection/blob/master/LICENSE.md) for details.
+See [LICENSE](https://github.com/monum/DiscoverBPS/LICENSE.md) for details.
 
 [![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/schoolselection.png)](http://stats.codeforamerica.org/projects/schoolselection)
