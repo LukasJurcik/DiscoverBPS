@@ -105,7 +105,5 @@ request with failing specs.
 9. Submit a pull request. Please do not include changes to the gemspec, version, or history file. (If you want to create your own version for some reason, please do so in a separate commit.)
 
 ## <a name="copyright">Copyright</a>
-Copyright (c) 2011 Code for America.
+Copyright (c) 2012-2013 Mayor's Office of New Urban Mechanics, City of Boston.
 See [LICENSE](https://github.com/monum/DiscoverBPS/blob/master/LICENSE.md) for details.
-
-[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/schoolselection.png)](http://stats.codeforamerica.org/projects/schoolselection)
